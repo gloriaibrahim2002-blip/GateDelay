@@ -34,3 +34,28 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Local API Proxy & Rewrites
+
+To streamline local development and avoid CORS or origin issues, this project is configured with an integrated API rewrite proxy in `next.config.ts`.
+
+### How It Works
+
+During local development, API requests originating from the client-side are proxied as follows:
+- Requests starting with `/api/v1/*` are transparently forwarded to the backend server.
+- Requests starting with `/backend/*` are transparently forwarded to the backend server.
+
+### Configuration
+
+You can configure the target backend server by setting the `NEXT_PUBLIC_API_URL` environment variable in your `.env.local` file.
+
+- **Fallback Default**: If `NEXT_PUBLIC_API_URL` is not defined, the proxy defaults to forwarding requests to `http://localhost:8080`.
+- **Example configuration** in `.env.local`:
+  ```env
+  NEXT_PUBLIC_API_URL=http://localhost:8080
+  ```
+
+### Security & Secret Leakage Prevention
+
+- **No Server Secrets in Client Bundle**: Legacy configurations like `publicRuntimeConfig` and `serverRuntimeConfig` have been deprecated and completely removed.
+- **Explicit Variable Exposure**: Only environment variables prefixed with `NEXT_PUBLIC_` are loaded into the browser-facing bundle. All other variables remain strictly server-side, preventing accidental leaks of API credentials or secrets.

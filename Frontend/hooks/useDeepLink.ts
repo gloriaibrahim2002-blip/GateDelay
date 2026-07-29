@@ -28,7 +28,7 @@ export interface NavigationOptions {
 export function useDeepLink(autoNavigate: boolean = true) {
     const router = useRouter();
     const searchParams = useSearchParams();
-    const pathname = usePathname();
+    const pathname = usePathname() || "";
     const [state, setState] = useState<DeepLinkState>({
         isMarketLink: false,
         params: null,
@@ -36,6 +36,9 @@ export function useDeepLink(autoNavigate: boolean = true) {
     });
 
     const parseDeepLink = useCallback((): DeepLinkState => {
+        if (!searchParams) {
+            return { isMarketLink: false, params: null, isValid: true };
+        }
         const marketId = searchParams.get("marketId");
         const outcome = searchParams.get("outcome") as "yes" | "no" | null;
         const side = searchParams.get("side") as "buy" | "sell" | null;
