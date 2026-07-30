@@ -2,6 +2,7 @@ import { Controller, Get } from '@nestjs/common';
 import { MarketResolverService } from './market-resolver.service';
 
 // Use the existing CommonJS tradeAggregator for real-time stats
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const tradeAggregator = require('../../services/tradeAggregator');
 
 @Controller('api/markets')
