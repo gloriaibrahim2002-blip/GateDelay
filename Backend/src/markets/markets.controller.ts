@@ -25,7 +25,8 @@ export class MarketsController {
         return {
           id: m.id,
           name: m.title,
-          asset: m.title && m.title.includes('-') ? m.title.split('-')[0] : m.title,
+          asset:
+            m.title && m.title.includes('-') ? m.title.split('-')[0] : m.title,
           price: parseFloat(stats.lastPrice || '0') || 0,
           feePercent: 0, // placeholder — augment from orderbook/provider if available
           liquidity: parseFloat(stats.volume || '0') || 0,

@@ -1,11 +1,24 @@
-import { IsString, IsEnum, IsOptional, IsObject, IsBoolean, IsArray } from 'class-validator';
+import {
+  IsString,
+  IsEnum,
+  IsOptional,
+  IsObject,
+  IsBoolean,
+  IsArray,
+} from 'class-validator';
 import { NotificationChannel, NotificationType } from '../notification.entity';
 
 export class SendNotificationDto {
   @IsString()
   userId: string;
 
-  @IsEnum(['trade_confirmation', 'market_update', 'price_alert', 'system', 'weekly_digest'])
+  @IsEnum([
+    'trade_confirmation',
+    'market_update',
+    'price_alert',
+    'system',
+    'weekly_digest',
+  ])
   type: NotificationType;
 
   @IsEnum(['email', 'push', 'in-app'])
