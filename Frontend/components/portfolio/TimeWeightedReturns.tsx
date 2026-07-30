@@ -261,7 +261,7 @@ export default function TimeWeightedReturns() {
                     background: "var(--card)",
                     border: "1px solid var(--border)",
                   }}
-                  formatter={(val: any) => [`${Number(val).toFixed(2)}%`, "TWR"]}
+                  formatter={(val: any) => [`${parseFloat(val).toFixed(2)}%`, "TWR"]}
                 />
                 <Bar
                   dataKey="twr"

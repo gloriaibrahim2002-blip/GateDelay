@@ -55,6 +55,9 @@ export default function TradeRollback({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const toast = useToast();
+  const showToast = (message: string, type: 'success' | 'error' | 'warning' | 'info') => {
+    toast[type](message);
+  };
 
   // Fetch history when component mounts or marketId changes
   useEffect(() => {
