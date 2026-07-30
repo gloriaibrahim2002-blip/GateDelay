@@ -42,6 +42,7 @@ To prevent Cross-Origin Resource Sharing (CORS) issues and simplify local develo
 
 When the frontend makes a request to:
 - `/api/v1/:path*`
+- `/api/:path*`
 - `/backend/:path*`
 
 Next.js will transparently proxy/rewrite those requests to your target backend URL (defined by `NEXT_PUBLIC_API_URL`, falling back to `http://localhost:8080` if not set).

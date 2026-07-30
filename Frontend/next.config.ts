@@ -23,6 +23,11 @@ const nextConfig: NextConfig = {
         destination: `${backendUrl}/api/v1/:path*`,
       },
       {
+        // Matches general API requests starting with /api/ and proxies to the backend URL
+        source: "/api/:path*",
+        destination: `${backendUrl}/api/:path*`,
+      },
+      {
         // Matches backend prefix to ensure backward compatibility and smooth proxying
         source: "/backend/:path*",
         destination: `${backendUrl}/:path*`,
